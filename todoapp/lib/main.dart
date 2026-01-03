@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'Providers/providers.dart';
 import 'package:provider/provider.dart';
 import 'dashboard.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,13 +16,13 @@ void main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: FirebaseOptions(
-        apiKey: "AIzaSyAOdxelpo5FG_tUZMhoT06-t0NrVr363NQ",
-        authDomain: "todoapp-29010.firebaseapp.com",
-        projectId: "todoapp-29010",
-        storageBucket: "todoapp-29010.firebasestorage.app",
-        messagingSenderId: "256762293614",
-        appId: "1:256762293614:web:4281883c4049cec763657f",
-        measurementId: "G-Z2HJ6BDD0C",
+        apiKey: dotenv.env['FIREBASE_API_KEY']!,
+        authDomain: dotenv.env['FIREBASE_AUTH_DOMAIN']!,
+        projectId: dotenv.env['FIREBASE_PROJECT_ID']!,
+        storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET']!,
+        messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID']!,
+        appId: dotenv.env['FIREBASE_APP_ID']!,
+        measurementId: dotenv.env['FIREBASE_MEASUREMENT_ID']!,
       ),
     );
   } else {
