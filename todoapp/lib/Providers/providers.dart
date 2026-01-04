@@ -13,9 +13,20 @@ class TodoList {
   }
 }
 
+class Notes {
+  final List<String> title;
+  final List<String> body;
+  Notes({required this.title, required this.body});
+}
+
 class Listprovider extends ChangeNotifier {
-  List<String> worktitle = [''];
+  List<String> worktitle = ['', ''];
+
   List<TodoList> alllist = [];
+
+  List<Notes> allnotes = [];
+  List<String> notestitle = [];
+  List<String> notesbody = [];
 
   void addlist() {
     worktitle.add('');
@@ -39,8 +50,39 @@ class Listprovider extends ChangeNotifier {
       todo.title.addAll(worktitle);
       todo.sync();
     }
-
     worktitle = [''];
+    notifyListeners();
+  }
+
+  void removeTodo(int index) {
+    final todo = alllist.first;
+    if (alllist.isNotEmpty && index < todo.title.length) {
+      todo.title.removeAt(index);
+      todo.sync();
+      notifyListeners();
+    }
+  }
+
+  void removenotes(int index) {
+    allnotes.removeAt(index);
+
+    notifyListeners();
+  }
+
+  addnotestitle(String value) {
+    notestitle.add(value);
+  }
+
+  addnotesbody(String value) {
+    notesbody.add(value);
+  }
+
+  void savenotes() {
+    allnotes.add(
+      Notes(title: List.from(notestitle), body: List.from(notesbody)),
+    );
+    notestitle = [];
+    notesbody = [];
     notifyListeners();
   }
 }

@@ -82,7 +82,6 @@ class _DashboardState extends State<Dashboard> {
                                     ),
                                   ),
                                 ),
-
                                 Text(
                                   time,
                                   style: const TextStyle(
@@ -91,7 +90,6 @@ class _DashboardState extends State<Dashboard> {
                                     color: Colors.white,
                                   ),
                                 ),
-
                                 const SizedBox(width: 10),
 
                                 GestureDetector(
@@ -106,6 +104,16 @@ class _DashboardState extends State<Dashboard> {
                                         : Icons.check_box_outline_blank,
                                     color: Colors.white,
                                   ),
+                                ),
+
+                                const SizedBox(width: 10),
+
+                                TextButton(
+                                  onPressed: () {
+                                    // Call the removeTodo method from provider
+                                    model.removeTodo(index);
+                                  },
+                                  child: const Icon(Icons.delete),
                                 ),
                               ],
                             ),

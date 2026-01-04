@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Addtodoworks.dart';
 import 'dashboard.dart';
+import 'Models/notes_create.dart';
+import 'Models/notes_view.dart';
 
 class Bottomnavigation extends StatefulWidget {
   const Bottomnavigation({super.key});
@@ -105,18 +107,23 @@ class _BottomnavigationState extends State<Bottomnavigation> {
       ),
       body: PageView(
         controller: pageController,
-        children: [Dashboard(), Addtodowork()],
+        children: [Dashboard(), Addtodowork(), Notes(), NotesView()],
       ),
 
       bottomNavigationBar: SingleChildScrollView(
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Dashboard'),
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add),
+              label: 'Add ToDo Works',
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Notes'),
+            BottomNavigationBarItem(icon: Icon(Icons.note), label: 'Notes'),
           ],
           currentIndex: selectedindex,
           selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.red,
+          unselectedItemColor: Colors.blueGrey,
           onTap: ontappeditem,
         ),
       ),
